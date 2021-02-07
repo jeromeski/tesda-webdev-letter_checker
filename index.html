@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TESDA | LETTER CHECKER | DAY 9</title>
+    <link rel="icon" href="favicon.png" />
+    <meta
+      name="keywords"
+      content="html, css, tesda, TESDA, exercise, activity, webdev, web development, informatics, javascript, JS, letter checker, simple validation"
+    />
+    <meta name="author" content="Jerome Gacoscosim" />
+    <style>
+      body {
+        font-family: 'Century Gothic';
+        background-image: radial-gradient(yellow, red);
+        height: 70%;
+        padding-top: 15%;
+      }
+      div {
+        padding-top: 40px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        background-color: rgba(221, 221, 221, 53%);
+        padding: 20px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 53%);
+        width: 400px;
+        height: 250px;
+      }
+      input[type='text'] {
+        background-color: rgba(221, 221, 221, 0%);
+        border: 0;
+        border: 1px solid #585757;
+        width: 40px;
+        padding: 5px;
+        font-size: 14px;
+      }
+      button {
+        border-radius: 12px;
+        border: 0;
+        padding: 12px;
+        font-size: 20px;
+      }
+      button:hover {
+        background-color: #6699cc;
+        color: white;
+        border: 0;
+      }
+    </style>
+    <script>
+      function checkInput() {
+        var x = document.getElementById('val').value;
+        if (isNaN(x)) {
+          var vowels = ['a', 'e', 'i', 'o', 'u'];
+          for (var i = 0; i < vowels.length; i++) {
+            if (x.toLowerCase() === vowels[i]) {
+              document.getElementById('demo').innerHTML =
+                'You entered letter ' + x + '. <br>' + x + ' is a Vowel';
+              return true;
+            } else if (x.toLowerCase() !== vowels[i]) {
+              document.getElementById('demo').innerHTML =
+                'You entered ' + x + '.<br> ' + x + ' is a consonant';
+              return false;
+            }
+          }
+        } else {
+          document.getElementById('demo').innerHTML =
+            'You entered ' + x + '.<br> ' + x + ' is not a letter';
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <center>
+      <div>
+        <h2>Please input a letter:</h2>
+
+        <input id="val" type="text" maxlength="1" />
+        <br /><br />
+        <button onclick="checkInput()">Check</button>
+
+        <h3 id="demo"></h3>
+      </div>
+    </center>
+  </body>
+</html>
