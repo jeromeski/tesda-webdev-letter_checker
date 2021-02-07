@@ -55,16 +55,20 @@
 
         <input id="val" type="text" maxlength="1" />
         <br /><br />
-        <button onclick="handleCheckInput()">Check</button>
+        <button onclick="validate.handleCheckInput()">Check</button>
 
         <h3 id="demo"></h3>
       </div>
     </center>
     <script>
-      function handleCheckInput() {
-        var result;
-        var input = document.querySelector('#val').value;
-        var handleValidation = function () {
+      var validate = {
+        result: null,
+        handleCheckInput: function () {
+          var input = document.querySelector('#val').value;
+          result = this.handleValidation(input);
+          document.querySelector('#demo').innerHTML = result;
+        },
+        handleValidation: function (input) {
           if (input.match(/[a-z]/i)) {
             console.log(input, ' is a letter.');
             return (
@@ -82,10 +86,8 @@
               input + ' is a symbol. <br/> <small>Please enter a LETTER</small>'
             );
           }
-        };
-        result = handleValidation();
-        document.querySelector('#demo').innerHTML = result;
-      }
+        },
+      };
     </script>
   </body>
 </html>
