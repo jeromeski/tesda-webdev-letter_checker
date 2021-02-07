@@ -53,7 +53,7 @@
       <div>
         <h2>Please input a letter:</h2>
 
-        <input id="val" type="text" maxlength="1" />
+        <input id="val" type="text" maxlength="1" onfocus="this.value=''" />
         <br /><br />
         <button onclick="validate.handleCheckInput()">Check</button>
 
@@ -61,6 +61,10 @@
       </div>
     </center>
     <script>
+      var inputField = document.querySelector('input[type="text"]');
+      inputField.addEventListener('focus', function () {
+        validate.handleClearResults();
+      });
       var validate = {
         result: null,
         handleCheckInput: function () {
@@ -68,12 +72,15 @@
           result = this.handleValidation(input);
           document.querySelector('#demo').innerHTML = result;
         },
+        handleClearResults: function () {
+          document.querySelector('#demo').innerHTML = '&nbsp;';
+        },
         handleValidation: function (input) {
           if (input.match(/[a-z]/i)) {
             console.log(input, ' is a letter.');
             return (
               input +
-              ' is a letter. <br/> <small>Please enter another character</small>'
+              " is a letter. <br/> <small>That's correct! <br/> Try another character.</small>"
             );
           } else if (input.match(/[0-9]/)) {
             console.log(input, ' is a number');
