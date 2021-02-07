@@ -47,28 +47,6 @@
         border: 0;
       }
     </style>
-    <script>
-      function checkInput() {
-        var x = document.getElementById('val').value;
-        if (isNaN(x)) {
-          var vowels = ['a', 'e', 'i', 'o', 'u'];
-          for (var i = 0; i < vowels.length; i++) {
-            if (x.toLowerCase() === vowels[i]) {
-              document.getElementById('demo').innerHTML =
-                'You entered letter ' + x + '. <br>' + x + ' is a Vowel';
-              return true;
-            } else if (x.toLowerCase() !== vowels[i]) {
-              document.getElementById('demo').innerHTML =
-                'You entered ' + x + '.<br> ' + x + ' is a consonant';
-              return false;
-            }
-          }
-        } else {
-          document.getElementById('demo').innerHTML =
-            'You entered ' + x + '.<br> ' + x + ' is not a letter';
-        }
-      }
-    </script>
   </head>
   <body>
     <center>
@@ -77,10 +55,37 @@
 
         <input id="val" type="text" maxlength="1" />
         <br /><br />
-        <button onclick="checkInput()">Check</button>
+        <button onclick="handleCheckInput()">Check</button>
 
         <h3 id="demo"></h3>
       </div>
     </center>
+    <script>
+      function handleCheckInput() {
+        var result;
+        var input = document.querySelector('#val').value;
+        var handleValidation = function () {
+          if (input.match(/[a-z]/i)) {
+            console.log(input, ' is a letter.');
+            return (
+              input +
+              ' is a letter. <br/> <small>Please enter another character</small>'
+            );
+          } else if (input.match(/[0-9]/)) {
+            console.log(input, ' is a number');
+            return (
+              input + ' is a number. <br/> <small>Please enter a LETTER</small>'
+            );
+          } else {
+            console.log(input, ' is a symbol');
+            return (
+              input + ' is a symbol. <br/> <small>Please enter a LETTER</small>'
+            );
+          }
+        };
+        result = handleValidation();
+        document.querySelector('#demo').innerHTML = result;
+      }
+    </script>
   </body>
 </html>
